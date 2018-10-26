@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
     LinearLayout newmonth,entry;
     SqliteDatabaseHelper sqliteDatabaseHelper;
     TextView monthinput,yearinput;
+    Button deshboard;
+    String month_name;
+    int year;
 
     @SuppressLint("WrongConstant")
     @Override
@@ -32,12 +36,13 @@ public class MainActivity extends AppCompatActivity {
         entry=findViewById(R.id.entrylayout);
         monthinput=findViewById(R.id.month_input);
         yearinput=findViewById(R.id.year_input);
+        deshboard=findViewById(R.id.deshboard);
 
         Calendar cal=Calendar.getInstance();
         SimpleDateFormat month_date = new SimpleDateFormat("MMMM");
-        String month_name = month_date.format(cal.getTime());
+        month_name = month_date.format(cal.getTime());
         monthinput.setText(month_name);
-        int year = cal.get(Calendar.YEAR);
+        year = cal.get(Calendar.YEAR);
         yearinput.setText(String.valueOf(year));
 
         CheckingForNewMonth=getSharedPreferences("CheckingMonth",MODE_PRIVATE);
@@ -60,7 +65,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void deshboardBtn(View view) {
-        Toast.makeText(this, "Funtionality not added", Toast.LENGTH_SHORT).show();
+        String a=month_name+year;
+        deshboard.setText(a);
     }
 
     public void NewMonthBtn(View view) {

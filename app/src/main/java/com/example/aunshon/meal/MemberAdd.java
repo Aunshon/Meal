@@ -17,6 +17,7 @@ public class MemberAdd extends AppCompatActivity {
     SharedPreferences.Editor editor,member_saving_to_sharedprefrences;
     EditText m1,m2,m3,m4,m5,m6,m7,m8,m9,m10,monthinput,yearinput;
     SqliteDatabaseHelper sqliteDatabaseHelper;
+    String TABLE_NAME;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class MemberAdd extends AppCompatActivity {
         monthinput.setText(month_name);
         int year = cal.get(Calendar.YEAR);
         yearinput.setText(String.valueOf(year));
+        TABLE_NAME=month_name+year;
 
         CheckingForNewMonth=getSharedPreferences("CheckingMonth",MODE_PRIVATE);
         memberinput=getSharedPreferences("Member",MODE_PRIVATE);
@@ -65,6 +67,7 @@ public class MemberAdd extends AppCompatActivity {
         member_saving_to_sharedprefrences.putString("m10",m10.getText().toString());
         member_saving_to_sharedprefrences.putString("yearinput",yearinput.getText().toString());
         member_saving_to_sharedprefrences.putString("monthinput",monthinput.getText().toString());
+        member_saving_to_sharedprefrences.putString("TABLE_NAME",TABLE_NAME);
         member_saving_to_sharedprefrences.apply();
         member_saving_to_sharedprefrences.commit();
         Toast.makeText(this, "Month Added Successfully..", Toast.LENGTH_SHORT).show();
