@@ -1,16 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".DeshBoard">
+
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="top"
+        android:layout_margin="10dp"
+        >
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:text="Money"
+            android:id="@+id/money_btn"
+            android:onClick="money_btn_Clicked"
+            />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_weight="1"
+            android:text="Meal"
+            android:id="@+id/meal_btn"
+            android:onClick="meal_btn_Clicked"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/FragmentContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         >
 
     </LinearLayout>
-</ScrollView>
+</LinearLayout>

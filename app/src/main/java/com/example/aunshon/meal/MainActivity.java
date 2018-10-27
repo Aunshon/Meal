@@ -65,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void deshboardBtn(View view) {
-        String a=month_name+year;
-        deshboard.setText(a);
+        Intent intent=new Intent(MainActivity.this,DeshBoard.class);
+        startActivity(intent);
     }
 
     public void NewMonthBtn(View view) {
