@@ -79,7 +79,7 @@ public class Mealfragment extends Fragment {
             meal10 += Integer.parseInt(j);
         }
         int totalMeal=meal1+meal2+meal3+meal4+meal5+meal6+meal7+meal8+meal9+meal10;
-        g1.setText(String.valueOf(meal1));g3.setText(String.valueOf(meal3));g5.setText(String.valueOf(meal4));g7.setText(String.valueOf(meal7));g9.setText(String.valueOf(meal9));
+        g1.setText(String.valueOf(meal1));g3.setText(String.valueOf(meal3));g5.setText(String.valueOf(meal5));g7.setText(String.valueOf(meal7));g9.setText(String.valueOf(meal9));
         g2.setText(String.valueOf(meal2));g4.setText(String.valueOf(meal4));g6.setText(String.valueOf(meal6));g8.setText(String.valueOf(meal8));g10.setText(String.valueOf(meal10));
         total.setText(String.valueOf(totalMeal));
     }

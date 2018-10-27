@@ -19,10 +19,9 @@ public class SqliteDatabaseHelper extends SQLiteOpenHelper {
     public SqliteDatabaseHelper(@Nullable Context context) {
         super(context, DatabaseName, null, 1);
     }
-
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table "+TABLE_NAME+" (m1 integer,m2 integer,m3 integer,m4 integer,m5 integer,m6 integer,m7 integer,m8 integer,m9 integer,m10 integer)");
+        db.execSQL("create table "+TABLE_NAME+" (m1 integer,m2 integer,m3 integer,m4 integer,m5 integer,m6 integer,m7 integer,m8 integer,m9 integer,m10 integer,m1m integer,m2m integer,m3m integer,m4m integer,m5m integer,m6m integer,m7m integer,m8m integer,m9m integer,m10m integer,expence integer)");
     }
 
     @Override
@@ -30,7 +29,7 @@ public class SqliteDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("drop table if exists "+TABLE_NAME);
         onCreate(db);
     }
-    public boolean AddMeal(String m1,String m2,String m3,String m4,String m5,String m6,String m7,String m8,String m9,String m10){
+    public boolean AddMeal(String m1,String m2,String m3,String m4,String m5,String m6,String m7,String m8,String m9,String m10,String m1m,String m2m,String m3m,String m4m,String m5m,String m6m,String m7m,String m8m,String m9m,String m10m,String expence){
         SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
 
@@ -44,8 +43,19 @@ public class SqliteDatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("m8",m8);
         contentValues.put("m9",m9);
         contentValues.put("m10",m10);
-
+        contentValues.put("m1m",m1m);
+        contentValues.put("m2m",m2m);
+        contentValues.put("m3m",m3m);
+        contentValues.put("m4m",m4m);
+        contentValues.put("m5m",m5m);
+        contentValues.put("m6m",m6m);
+        contentValues.put("m7m",m7m);
+        contentValues.put("m8m",m8m);
+        contentValues.put("m9m",m9m);
+        contentValues.put("m10m",m10m);
+        contentValues.put("expence",expence);
         long result=sqLiteDatabase.insert(TABLE_NAME,null,contentValues);
+        sqLiteDatabase.close();
         if (result==-1){
             return false;
         }else {

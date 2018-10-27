@@ -9,6 +9,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class DeshBoard extends AppCompatActivity {
 
@@ -38,6 +42,14 @@ public class DeshBoard extends AppCompatActivity {
     }
 
     public void money_btn_Clicked(View view) {
+        Calendar cal=Calendar.getInstance();
+        SimpleDateFormat month_date = new SimpleDateFormat("MMMM");
+        String month_name = month_date.format(cal.getTime());
+        int year = cal.get(Calendar.YEAR);
+        String TABLE_NAME="Accounceof"+month_name+year;
+
+        Toast.makeText(this, ""+TABLE_NAME, Toast.LENGTH_SHORT).show();
+
         Moneyfragment moneyfragment=new Moneyfragment();
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.FragmentContainer,moneyfragment,"moneuFragment");

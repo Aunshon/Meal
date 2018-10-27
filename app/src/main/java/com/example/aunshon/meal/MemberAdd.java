@@ -73,5 +73,6 @@ public class MemberAdd extends AppCompatActivity {
         Toast.makeText(this, "Month Added Successfully..", Toast.LENGTH_SHORT).show();
         Intent intent=new Intent(MemberAdd.this,MainActivity.class);
         startActivity(intent);
+        finish();
     }
 }

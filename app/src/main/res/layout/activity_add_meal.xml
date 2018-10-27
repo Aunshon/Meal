@@ -75,10 +75,12 @@
                 android:gravity="center"
                 />
             <EditText
+                android:id="@+id/expence"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:hint="Money"
+                android:text="0"
                 android:textSize="24dp"
                 android:gravity="center"
                 />
@@ -140,13 +142,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="meal M1"
+                    android:text="0"
                     android:gravity="center"
                     android:layout_weight="1"
                     />
                 <EditText
+                    android:id="@+id/m1m"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="money"
+                    android:text="0"
                     android:gravity="center"
                     android:layout_weight="1"
                     />
@@ -169,13 +174,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="meal M2"
+                    android:text="0"
                     android:gravity="center"
                     android:layout_weight="1"
                     />
                 <EditText
+                    android:id="@+id/m2m"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="money"
+                    android:text="0"
                     android:gravity="center"
                     android:layout_weight="1"
                     />
@@ -198,13 +206,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="meal M3"
+                    android:text="0"
                     android:gravity="center"
                     android:layout_weight="1"
                     />
                 <EditText
+                    android:id="@+id/m3m"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="money"
+                    android:text="0"
                     android:gravity="center"
                     android:layout_weight="1"
                     />
@@ -227,13 +238,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="meal M4"
+                    android:text="0"
                     android:gravity="center"
                     android:layout_weight="1"
                     />
                 <EditText
+                    android:id="@+id/m4m"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="money"
+                    android:text="0"
                     android:gravity="center"
                     android:layout_weight="1"
                     />
@@ -256,14 +270,17 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="meal M5"
+                    android:text="0"
                     android:gravity="center"
                     android:layout_weight="1"
                     />
                 <EditText
+                    android:id="@+id/m5m"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="money"
                     android:gravity="center"
+                    android:text="0"
                     android:layout_weight="1"
                     />
             </LinearLayout>
@@ -285,13 +302,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="meal M6"
+                    android:text="0"
                     android:gravity="center"
                     android:layout_weight="1"
                     />
                 <EditText
+                    android:id="@+id/m6m"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="money"
+                    android:text="0"
                     android:gravity="center"
                     android:layout_weight="1"
                     />
@@ -314,13 +334,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="meal M7"
+                    android:text="0"
                     android:gravity="center"
                     android:layout_weight="1"
                     />
                 <EditText
+                    android:id="@+id/m7m"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="money"
+                    android:text="0"
                     android:gravity="center"
                     android:layout_weight="1"
                     />
@@ -343,13 +366,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="meal M8"
+                    android:text="0"
                     android:gravity="center"
                     android:layout_weight="1"
                     />
                 <EditText
+                    android:id="@+id/m8m"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="money"
+                    android:text="0"
                     android:gravity="center"
                     android:layout_weight="1"
                     />
@@ -372,13 +398,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="meal M9"
+                    android:text="0"
                     android:gravity="center"
                     android:layout_weight="1"
                     />
                 <EditText
+                    android:id="@+id/m9m"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="money"
+                    android:text="0"
                     android:gravity="center"
                     android:layout_weight="1"
                     />
@@ -401,25 +430,28 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="meal M10"
+                    android:text="0"
                     android:gravity="center"
                     android:layout_weight="1"
                     />
                 <EditText
+                    android:id="@+id/m10m"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="money"
+                    android:text="0"
                     android:gravity="center"
                     android:layout_weight="1"
                     />
             </LinearLayout>
         </LinearLayout>
         <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Done"
-            android:textSize="30dp"
-            android:layout_marginTop="10dp"
-            android:onClick="DoneBtn"
-            />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:textSize="20dp"
+        android:layout_marginTop="10dp"
+        android:onClick="DoneBtn"
+        />
     </LinearLayout>
 </ScrollView>
