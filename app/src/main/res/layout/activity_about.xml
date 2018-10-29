@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:textAlignment="center"
+    android:gravity="center"
+    android:layout_margin="20dp"
+    tools:context=".About">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="It is a complete food or meal management system specially for bachelors. If you have any query anything about me feel free to contact. let me khow what you feel and what you need."
+        android:layout_marginBottom="30dp"
+        android:gravity="center"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Contact : aunshonhasan@gmail.com"
+        android:gravity="center"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Developed by Abul Hasan(Aunshon)"
+        android:gravity="center"
+        />
+</LinearLayout>

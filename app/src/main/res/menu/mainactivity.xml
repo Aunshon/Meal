@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="History"
+        android:id="@+id/history"
+        android:onClick="HistoryMenu"
+        />
+    <item
+        android:title="Edit"
+        android:id="@+id/edit"
+        android:onClick="EditMenu"
+        />
+    <item
+        android:title="About"
+        android:id="@+id/about"
+        android:onClick="anoutMenu"
+        />
+    <item
+        android:title="Exit"
+        android:id="@+id/exit"
+        android:onClick="exitMenu"
+        />
+</menu>

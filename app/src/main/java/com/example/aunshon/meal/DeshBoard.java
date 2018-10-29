@@ -48,8 +48,6 @@ public class DeshBoard extends AppCompatActivity {
         int year = cal.get(Calendar.YEAR);
         String TABLE_NAME="Accounceof"+month_name+year;
 
-        Toast.makeText(this, ""+TABLE_NAME, Toast.LENGTH_SHORT).show();
-
         Moneyfragment moneyfragment=new Moneyfragment();
         FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.FragmentContainer,moneyfragment,"moneuFragment");

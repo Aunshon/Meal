@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -32,6 +33,7 @@ public class Moneyfragment extends Fragment {
     public static SqliteDatabaseHelper sqliteDatabaseHelper=null;
     String TABLE_N;
     public  static SQLiteDatabase setupDB=null;
+    DecimalFormat decimal=new DecimalFormat("#####.###");
 
     public Moneyfragment() {
         // Required empty public constructor
@@ -43,96 +45,109 @@ public class Moneyfragment extends Fragment {
         sqliteDatabaseHelper=new SqliteDatabaseHelper(getContext());
         setupDB=sqliteDatabaseHelper.getWritableDatabase();
 
-        int meal1=0,meal2=0,meal3=0,meal4=0,meal5=0,meal6=0,meal7=0,meal8=0,meal9=0,meal10=0,totalexp=0;
-        int ind1=0,ind2=0,ind3=0,ind4=0,ind5=0,ind6=0,ind7=0,ind8=0,ind9=0,ind10=0;
+        double meal1=0,meal2=0,meal3=0,meal4=0,meal5=0,meal6=0,meal7=0,meal8=0,meal9=0,meal10=0,totalexp=0;
+        double ind1=0,ind2=0,ind3=0,ind4=0,ind5=0,ind6=0,ind7=0,ind8=0,ind9=0,ind10=0;
+        double indExp1=0,indExp2=0,indExp3=0,indExp4=0,indExp5=0,indExp6=0,indExp7=0,indExp8=0,indExp9=0,indExp10=0;
+        double due1=0,due2=0,due3=0,due4=0,due5=0,due6=0,due7=0,due8=0,due9=0,due10=0;
+        double mealrate = 0;
 
         Cursor c=setupDB.rawQuery("select * from "+TABLE_N,null);
         while (c.moveToNext())
         {
             //indevisual meal
             String i1=c.getString(0);
-            ind1 += Integer.parseInt(i1);
+            ind1 += Double.parseDouble(i1);
 
             String i2=c.getString(1);
-            ind2 += Integer.parseInt(i2);
+            ind2 += Double.parseDouble(i2);
 
             String i3=c.getString(2);
-            ind3 += Integer.parseInt(i3);
+            ind3 += Double.parseDouble(i3);
 
             String i4=c.getString(3);
-            ind4 += Integer.parseInt(i4);
+            ind4 += Double.parseDouble(i4);
 
             String i5=c.getString(4);
-            ind5 += Integer.parseInt(i5);
+            ind5 += Double.parseDouble(i5);
 
             String i6=c.getString(5);
-            ind6 += Integer.parseInt(i6);
+            ind6 += Double.parseDouble(i6);
 
             String i7=c.getString(6);
-            ind7 += Integer.parseInt(i7);
+            ind7 += Double.parseDouble(i7);
 
             String i8=c.getString(7);
-            ind8 += Integer.parseInt(i8);
+            ind8 += Double.parseDouble(i8);
 
             String i9=c.getString(8);
-            ind9 += Integer.parseInt(i9);
+            ind9 += Double.parseDouble(i9);
 
             String i10=c.getString(9);
-            ind10 += Integer.parseInt(i10);
+            ind10 += Double.parseDouble(i10);
             /////////////////////
             String a=c.getString(10);
-            meal1 += Integer.parseInt(a);
+            meal1 += Double.parseDouble(a);
 
             String b=c.getString(11);
-            meal2 += Integer.parseInt(b);
+            meal2 += Double.parseDouble(b);
 
             String cc=c.getString(12);
-            meal3 += Integer.parseInt(cc);
+            meal3 += Double.parseDouble(cc);
 
             String d=c.getString(13);
-            meal4 += Integer.parseInt(d);
+            meal4 += Double.parseDouble(d);
 
             String e=c.getString(14);
-            meal5 += Integer.parseInt(e);
+            meal5 += Double.parseDouble(e);
 
             String f=c.getString(15);
-            meal6 += Integer.parseInt(f);
+            meal6 += Double.parseDouble(f);
 
             String g=c.getString(16);
-            meal7 += Integer.parseInt(g);
+            meal7 += Double.parseDouble(g);
 
             String h=c.getString(17);
-            meal8 += Integer.parseInt(h);
+            meal8 += Double.parseDouble(h);
 
             String i=c.getString(18);
-            meal9 += Integer.parseInt(i);
+            meal9 += Double.parseDouble(i);
 
             String j=c.getString(19);
-            meal10 += Integer.parseInt(j);
+            meal10 += Double.parseDouble(j);
 
             String k=c.getString(20);
-            totalexp += Integer.parseInt(k);
+            totalexp += Double.parseDouble(k);
         }
-        int totalamount=meal1+meal2+meal3+meal4+meal5+meal6+meal7+meal8+meal9+meal10;
-        int totalmeal=ind1+ind2+ind3+ind4+ind5+ind6+ind7+ind8+ind9+ind10;
-        int existing_cash=totalamount-totalexp;
+        double totalamount=meal1+meal2+meal3+meal4+meal5+meal6+meal7+meal8+meal9+meal10;
+        double totalmeal=ind1+ind2+ind3+ind4+ind5+ind6+ind7+ind8+ind9+ind10;
+        double existing_cash=totalamount-totalexp;
 
         total_amount.setText(String.valueOf(totalamount));
-        total_expence.setText(String.valueOf(totalexp));
-        cash.setText(String.valueOf(existing_cash));
+        total_expence.setText(String.valueOf(decimal.format(totalexp)));
+        cash.setText(String.valueOf(decimal.format(existing_cash)));
 
-        g1.setText(String.valueOf(meal1));g3.setText(String.valueOf(meal3));g5.setText(String.valueOf(meal5));g7.setText(String.valueOf(meal7));g9.setText(String.valueOf(meal9));
-        g2.setText(String.valueOf(meal2));g4.setText(String.valueOf(meal4));g6.setText(String.valueOf(meal6));g8.setText(String.valueOf(meal8));g10.setText(String.valueOf(meal10));
+        g1.setText(String.valueOf(decimal.format(meal1)));g3.setText(String.valueOf(decimal.format(meal3)));g5.setText(String.valueOf(decimal.format(meal5)));g7.setText(String.valueOf(decimal.format(meal7)));g9.setText(String.valueOf(decimal.format(meal9)));
+        g2.setText(String.valueOf(decimal.format(meal2)));g4.setText(String.valueOf(decimal.format(meal4)));g6.setText(String.valueOf(decimal.format(meal6)));g8.setText(String.valueOf(decimal.format(meal8)));g10.setText(String.valueOf(decimal.format(meal10)));
         if (totalexp==0){
             Toast.makeText(getContext(), "No expence in this month so meal rate is 0", Toast.LENGTH_SHORT).show();
             meal_rate.setText("0");
         }
         else {
-            double mealrate=totalexp/totalmeal;
-            meal_rate.setText(String.valueOf(mealrate));
+            mealrate=totalexp/totalmeal;
+            meal_rate.setText(String.valueOf(decimal.format(mealrate)));
         }
 
+        indExp1=ind1*mealrate;indExp3=ind3*mealrate;indExp5=ind5*mealrate;indExp7=ind7*mealrate;indExp9=ind9*mealrate;
+        indExp2=ind2*mealrate;indExp4=ind4*mealrate;indExp6=ind6*mealrate;indExp8=ind8*mealrate;indExp10=ind10*mealrate;
 
+        e1.setText(String.valueOf(decimal.format(indExp1)));e2.setText(String.valueOf(decimal.format(indExp2)));e3.setText(String.valueOf(decimal.format(indExp3)));e4.setText(String.valueOf(decimal.format(indExp4)));e5.setText(String.valueOf(decimal.format(indExp5)));
+        e6.setText(String.valueOf(decimal.format(indExp6)));e7.setText(String.valueOf(decimal.format(indExp7)));e8.setText(String.valueOf(decimal.format(indExp8)));e9.setText(String.valueOf(decimal.format(indExp9)));e10.setText(String.valueOf(decimal.format(indExp10)));
+
+        due1=meal1-indExp1;due2=meal2-indExp2;due3=meal3-indExp3;due4=meal4-indExp4;due6=meal6-indExp6;
+        due7=meal7-indExp7;due8=meal8-indExp8;due9=meal9-indExp9;due10=meal10-indExp10;due5=meal5-indExp5;
+
+        d1.setText(String.valueOf(decimal.format(due1)));d2.setText(String.valueOf(decimal.format(due2)));d3.setText(String.valueOf(decimal.format(due3)));d4.setText(String.valueOf(decimal.format(due4)));d5.setText(String.valueOf(decimal.format(due5)));
+        d6.setText(String.valueOf(decimal.format(due6)));d7.setText(String.valueOf(decimal.format(due7)));d8.setText(String.valueOf(decimal.format(due8)));d9.setText(String.valueOf(decimal.format(due9)));d10.setText(String.valueOf(decimal.format(due10)));
     }
 
 
@@ -195,7 +210,7 @@ public class Moneyfragment extends Fragment {
         SimpleDateFormat month_date = new SimpleDateFormat("MMMM");
         String month_name = month_date.format(cal.getTime());
         int year = cal.get(Calendar.YEAR);
-        String TABLE_NAME="AccounceOf"+month_name+year;
+        String TABLE_NAME="Accounce Of "+month_name+year;
         month.setText(TABLE_NAME);
         TABLE_N=month_name+year;
         memberinput=getContext().getSharedPreferences("Member",MODE_PRIVATE);

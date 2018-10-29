@@ -6,6 +6,8 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -91,5 +93,42 @@ public class AddMeal extends AppCompatActivity {
             });
             alertdialog.show();
         }
+    }
+
+    public void CloseMonth(MenuItem item) {
+        AlertDialog.Builder alertdialog=new AlertDialog.Builder(AddMeal.this);
+        alertdialog.setTitle("Are You Sure ?");
+        alertdialog.setMessage("Is it a new Month ? Do not create two account in a single month.So make sure previous month is over and it is a new month");
+        alertdialog.setCancelable(true);
+        alertdialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                editor=CheckingForNewMonth.edit();
+                editor.putBoolean("checkmonth",true);
+                editor.apply();
+                editor.commit();
+
+                finish();
+                Intent intent=new Intent(AddMeal.this,MainActivity.class);
+                startActivity(intent);
+            }
+        });
+        alertdialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        alertdialog.show();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.secondmenu,menu);
+        return true;
+    }
+
+    public void EditMenu(MenuItem item) {
+        Toast.makeText(this, "This page is in under Development", Toast.LENGTH_SHORT).show();
     }
 }

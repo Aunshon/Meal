@@ -18,7 +18,10 @@
         </activity>
         <activity android:name=".AddMeal" />
         <activity android:name=".MemberAdd" />
-        <activity android:name=".DeshBoard"></activity>
+        <activity android:name=".DeshBoard" />
+        <activity android:name=".Edit" />
+        <activity android:name=".About" />
+        <activity android:name=".History"></activity>
     </application>
 
 </manifest>

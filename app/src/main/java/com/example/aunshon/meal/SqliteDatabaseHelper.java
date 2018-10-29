@@ -21,7 +21,7 @@ public class SqliteDatabaseHelper extends SQLiteOpenHelper {
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table "+TABLE_NAME+" (m1 integer,m2 integer,m3 integer,m4 integer,m5 integer,m6 integer,m7 integer,m8 integer,m9 integer,m10 integer,m1m integer,m2m integer,m3m integer,m4m integer,m5m integer,m6m integer,m7m integer,m8m integer,m9m integer,m10m integer,expence integer)");
+        db.execSQL("create table "+TABLE_NAME+" (m1 double,m2 double,m3 double,m4 double,m5 double,m6 double,m7 double,m8 double,m9 double,m10 double,m1m double,m2m double,m3m double,m4m double,m5m double,m6m double,m7m double,m8m double,m9m double,m10m double,expence double)");
     }
 
     @Override

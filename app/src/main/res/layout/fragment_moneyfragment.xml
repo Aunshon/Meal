@@ -45,7 +45,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Total Amount"
+                android:text="All Amount"
                 android:gravity="center"
                 android:layout_weight="1"
                 android:textStyle="bold"
@@ -54,7 +54,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Total Expence"
+                android:text="Expence"
                 android:gravity="center"
                 android:layout_weight="1"
                 android:textStyle="bold"

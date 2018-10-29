@@ -18,9 +18,6 @@ import java.util.Calendar;
 import static android.content.Context.MODE_PRIVATE;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class Mealfragment extends Fragment {
 
     SharedPreferences CheckingForNewMonth,memberinput;

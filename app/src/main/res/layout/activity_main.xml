@@ -99,7 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:id="@+id/newmonthBtn"
-                android:text="New Month"
+                android:text="New Month Account"
                 android:onClick="NewMonthBtn"
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
