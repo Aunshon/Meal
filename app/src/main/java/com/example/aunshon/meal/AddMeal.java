@@ -19,13 +19,15 @@ import java.util.Calendar;
 
 public class AddMeal extends AppCompatActivity {
 
-    SharedPreferences CheckingForNewMonth,memberinput;
-    SharedPreferences.Editor editor,member_saving_to_sharedprefrences;
+    public static final String DatabaseName="Meal_Android.db";
+    SharedPreferences CheckingForNewMonth,memberinput,VersionShare,Chander;
+    SharedPreferences.Editor editor,member_saving_to_sharedprefrences,VersionEdit,ChanderEdit;
     EditText m1E,m2E,m3E,m4E,m5E,m6E,m7E,m8E,m9E,m10E,monthinput,yearinput;
     EditText m1m,m2m,m3m,m4m,m5m,m6m,m7m,m8m,m9m,m10m,expence;
     TextView m1T,m2T,m3T,m4T,m5T,m6T,m7T,m8T,m9T,m10T;
     LinearLayout addMealLayout;
     String TABLE_NAME;
+    SqliteDatabaseHelper sqliteDatabaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,12 @@ public class AddMeal extends AppCompatActivity {
 
         CheckingForNewMonth=getSharedPreferences("CheckingMonth",MODE_PRIVATE);
         memberinput=getSharedPreferences("Member",MODE_PRIVATE);
+
+        VersionShare=getSharedPreferences("VersionShareGlobal",MODE_PRIVATE);
+        VersionEdit=VersionShare.edit();
+        Chander=getSharedPreferences("truefalse",MODE_PRIVATE);
+        ChanderEdit=Chander.edit();
+
         member_saving_to_sharedprefrences=memberinput.edit();
         m1T.setText(memberinput.getString("m1","Member1"));m6T.setText(memberinput.getString("m6","Member6"));
         m2T.setText(memberinput.getString("m2","Member2"));m7T.setText(memberinput.getString("m7","Member7"));
@@ -67,7 +75,9 @@ public class AddMeal extends AppCompatActivity {
         String sh=memberinput.getString("TABLE_NAME","TABLE_NAME");
         String tab=TABLE_NAME;
         if (sh.equals(tab)){
-            SqliteDatabaseHelper sqliteDatabaseHelper=new SqliteDatabaseHelper(AddMeal.this);
+            int versionint=VersionShare.getInt("Version",1);
+            Toast.makeText(this, "if true "+versionint, Toast.LENGTH_SHORT).show();
+            sqliteDatabaseHelper=new SqliteDatabaseHelper(AddMeal.this,DatabaseName,null,versionint);
 
             Boolean check=sqliteDatabaseHelper.AddMeal(m1E.getText().toString(),m2E.getText().toString(),m3E.getText().toString(),m4E.getText().toString()
                 ,m5E.getText().toString(),m6E.getText().toString(),m7E.getText().toString(),m8E.getText().toString()

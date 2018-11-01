@@ -27,6 +27,9 @@ public class Mealfragment extends Fragment {
     public static SqliteDatabaseHelper sqliteDatabaseHelper=null;
     String TABLE_N;
     public  static SQLiteDatabase setupDB=null;
+    public static final String DatabaseName="Meal_Android.db";
+    SharedPreferences VersionShare,Chander;
+    SharedPreferences.Editor VersionEdit,ChanderEdit;
 
     public Mealfragment() {
         // Required empty public constructor
@@ -37,7 +40,9 @@ public class Mealfragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        sqliteDatabaseHelper=new SqliteDatabaseHelper(getContext());
+        int versionint=VersionShare.getInt("Version",1);
+        Toast.makeText(getContext(), "Version "+versionint, Toast.LENGTH_SHORT).show();
+        sqliteDatabaseHelper=new SqliteDatabaseHelper(getContext(),DatabaseName,null,versionint);
         setupDB=sqliteDatabaseHelper.getWritableDatabase();
 
         int meal1=0,meal2=0,meal3=0,meal4=0,meal5=0,meal6=0,meal7=0,meal8=0,meal9=0,meal10=0;
@@ -123,6 +128,12 @@ public class Mealfragment extends Fragment {
         m3T.setText(memberinput.getString("m3","Member3"));m8T.setText(memberinput.getString("m8","Member8"));
         m4T.setText(memberinput.getString("m4","Member4"));m9T.setText(memberinput.getString("m9","Member9"));
         m5T.setText(memberinput.getString("m5","Member5"));m10T.setText(memberinput.getString("m10","Member10"));
+
+        VersionShare=getContext().getSharedPreferences("VersionShareGlobal",MODE_PRIVATE);
+        VersionEdit=VersionShare.edit();
+        Chander=getContext().getSharedPreferences("truefalse",MODE_PRIVATE);
+        ChanderEdit=Chander.edit();
+
         return view;
 
     }

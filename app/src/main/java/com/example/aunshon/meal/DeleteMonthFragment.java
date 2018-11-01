@@ -23,9 +23,14 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+import static android.content.Context.MODE_PRIVATE;
+
 
 public class DeleteMonthFragment extends Fragment {
 
+    public static final String DatabaseName="Meal_Android.db";
+    SharedPreferences VersionShare,Chander;
+    SharedPreferences.Editor VersionEdit,ChanderEdit;
     Button deletebtn;
     Spinner spinner;
     public static SqliteDatabaseHelper sqliteDatabaseHelper=null;
@@ -44,7 +49,10 @@ public class DeleteMonthFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        sqliteDatabaseHelper=new SqliteDatabaseHelper(getContext());
+        int versionint=VersionShare.getInt("Version",1);
+        Toast.makeText(getContext(), "Version"+versionint, Toast.LENGTH_SHORT).show();
+        sqliteDatabaseHelper=new SqliteDatabaseHelper(getContext(),DatabaseName,null,versionint);
+
         setupDB=sqliteDatabaseHelper.getWritableDatabase();
 
         ArrayAdapter<CharSequence>adapter=ArrayAdapter.createFromResource(getContext(),R.array.Spinner_item,android.R.layout.simple_spinner_item);
@@ -71,7 +79,7 @@ public class DeleteMonthFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 setupDB.rawQuery("drop table if exists "+result,null);
-                                CheckingForNewMonth=getContext().getSharedPreferences("CheckingMonth",Context.MODE_PRIVATE);
+                                CheckingForNewMonth=getContext().getSharedPreferences("CheckingMonth",MODE_PRIVATE);
                                 editor=CheckingForNewMonth.edit();
                                 editor.putBoolean("checkmonth",true);
                                 editor.apply();
@@ -109,6 +117,11 @@ public class DeleteMonthFragment extends Fragment {
         spinner=view.findViewById(R.id.spinner);
         deletebtn=view.findViewById(R.id.deletemonthBTN);
         yeatinputtext=view.findViewById(R.id.year_input_text);
+
+        VersionShare=getContext().getSharedPreferences("VersionShareGlobal",MODE_PRIVATE);
+        VersionEdit=VersionShare.edit();
+        Chander=getContext().getSharedPreferences("truefalse",MODE_PRIVATE);
+        ChanderEdit=Chander.edit();
         return view;
     }
 

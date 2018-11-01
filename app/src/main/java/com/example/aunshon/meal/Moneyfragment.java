@@ -26,8 +26,9 @@ import static android.content.Context.MODE_PRIVATE;
  */
 public class Moneyfragment extends Fragment {
 
-    SharedPreferences CheckingForNewMonth,memberinput;
-    SharedPreferences.Editor editor,member_saving_to_sharedprefrences;
+    public static final String DatabaseName="Meal_Android.db";
+    SharedPreferences CheckingForNewMonth,memberinput,VersionShare,Chander;
+    SharedPreferences.Editor editor,member_saving_to_sharedprefrences,VersionEdit,ChanderEdit;
     TextView month,m1T,m2T,m3T,m4T,m5T,m6T,m7T,m8T,m9T,m10T,total_amount,meal_rate,total_expence,cash;
     TextView g1,g2,g3,g4,g5,g6,g7,g8,g9,g10,total,e1,e2,e3,e4,e5,e6,e7,e8,e9,e10,d1,d2,d3,d4,d5,d6,d7,d8,d9,d10;
     public static SqliteDatabaseHelper sqliteDatabaseHelper=null;
@@ -42,7 +43,9 @@ public class Moneyfragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-        sqliteDatabaseHelper=new SqliteDatabaseHelper(getContext());
+        int versionint=VersionShare.getInt("Version",1);
+        Toast.makeText(getContext(), "Version"+versionint, Toast.LENGTH_SHORT).show();
+        sqliteDatabaseHelper=new SqliteDatabaseHelper(getContext(),DatabaseName,null,versionint);
         setupDB=sqliteDatabaseHelper.getWritableDatabase();
 
         double meal1=0,meal2=0,meal3=0,meal4=0,meal5=0,meal6=0,meal7=0,meal8=0,meal9=0,meal10=0,totalexp=0;
@@ -220,6 +223,12 @@ public class Moneyfragment extends Fragment {
         m3T.setText(memberinput.getString("m3","Member3"));m8T.setText(memberinput.getString("m8","Member8"));
         m4T.setText(memberinput.getString("m4","Member4"));m9T.setText(memberinput.getString("m9","Member9"));
         m5T.setText(memberinput.getString("m5","Member5"));m10T.setText(memberinput.getString("m10","Member10"));
+
+        VersionShare=getContext().getSharedPreferences("VersionShareGlobal",MODE_PRIVATE);
+        VersionEdit=VersionShare.edit();
+        Chander=getContext().getSharedPreferences("truefalse",MODE_PRIVATE);
+        ChanderEdit=Chander.edit();
+
         return view;
     }
 

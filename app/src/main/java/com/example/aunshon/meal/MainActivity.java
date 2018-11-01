@@ -23,8 +23,8 @@ import java.util.zip.Inflater;
 
 public class MainActivity extends AppCompatActivity {
 
-    SharedPreferences CheckingForNewMonth,memberinput;
-    SharedPreferences.Editor editor,member_saving_to_sharedprefrences;
+    SharedPreferences CheckingForNewMonth,VersionShare,Chander;
+    SharedPreferences.Editor VersionEdit,ChanderEdit;
     LinearLayout newmonth,entry;
     SqliteDatabaseHelper sqliteDatabaseHelper;
     TextView monthinput,yearinput;
@@ -52,6 +52,11 @@ public class MainActivity extends AppCompatActivity {
         yearinput.setText(String.valueOf(year));
 
         CheckingForNewMonth=getSharedPreferences("CheckingMonth",MODE_PRIVATE);
+        VersionShare=getSharedPreferences("VersionShareGlobal",MODE_PRIVATE);
+        VersionEdit=VersionShare.edit();
+        Chander=getSharedPreferences("truefalse",MODE_PRIVATE);
+
+        ChanderEdit=Chander.edit();
 
         if (CheckingForNewMonth.getBoolean("checkmonth",true)==true){
             entry.setVisibility(-1);
@@ -113,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void HistoryMenu(MenuItem item) {
-        Toast.makeText(this, "Under Development", Toast.LENGTH_SHORT).show();
+        int versionint=VersionShare.getInt("Version",1);
+        Toast.makeText(this, "Version "+versionint, Toast.LENGTH_SHORT).show();
     }
 }

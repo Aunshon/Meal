@@ -13,8 +13,9 @@ import java.util.Calendar;
 
 public class MemberAdd extends AppCompatActivity {
 
-    SharedPreferences CheckingForNewMonth,memberinput;
-    SharedPreferences.Editor editor,member_saving_to_sharedprefrences;
+    public static final String DatabaseName="Meal_Android.db";
+    SharedPreferences CheckingForNewMonth,memberinput,VersionShare,Chander;
+    SharedPreferences.Editor editor,member_saving_to_sharedprefrences,VersionEdit,ChanderEdit;
     EditText m1,m2,m3,m4,m5,m6,m7,m8,m9,m10,monthinput,yearinput;
     SqliteDatabaseHelper sqliteDatabaseHelper;
     String TABLE_NAME;
@@ -40,7 +41,14 @@ public class MemberAdd extends AppCompatActivity {
 
         CheckingForNewMonth=getSharedPreferences("CheckingMonth",MODE_PRIVATE);
         memberinput=getSharedPreferences("Member",MODE_PRIVATE);
+
+        VersionShare=getSharedPreferences("VersionShareGlobal",MODE_PRIVATE);
+        VersionEdit=VersionShare.edit();
+        Chander=getSharedPreferences("truefalse",MODE_PRIVATE);
+        ChanderEdit=Chander.edit();
+
         member_saving_to_sharedprefrences=memberinput.edit();
+
         m1.setText(memberinput.getString("m1","Member1"));m6.setText(memberinput.getString("m6","Member6"));
         m2.setText(memberinput.getString("m2","Member2"));m7.setText(memberinput.getString("m7","Member7"));
         m3.setText(memberinput.getString("m3","Member3"));m8.setText(memberinput.getString("m8","Member8"));
@@ -49,11 +57,31 @@ public class MemberAdd extends AppCompatActivity {
     }
 
     public void DoneClicked(View view) {
-        sqliteDatabaseHelper=new SqliteDatabaseHelper(MemberAdd.this);
+
+        if(Chander.getBoolean("boolCheck",true)==true){
+            int versionint=VersionShare.getInt("Version",1);
+            Toast.makeText(this, "if true "+versionint, Toast.LENGTH_SHORT).show();
+            sqliteDatabaseHelper=new SqliteDatabaseHelper(MemberAdd.this,DatabaseName,null,versionint);
+        }
+        else {
+            int versionint=VersionShare.getInt("Version",1);
+            int UpdateVertion=versionint+1;
+            VersionEdit.putInt("Version",UpdateVertion);
+            VersionEdit.apply();
+            VersionEdit.commit();
+
+            int GetUpdateVersion=VersionShare.getInt("Version",UpdateVertion);
+            Toast.makeText(this, "else false "+GetUpdateVersion, Toast.LENGTH_SHORT).show();
+            sqliteDatabaseHelper=new SqliteDatabaseHelper(MemberAdd.this,DatabaseName,null,GetUpdateVersion);
+        }
         editor=CheckingForNewMonth.edit();
         editor.putBoolean("checkmonth",false);
         editor.apply();
         editor.commit();
+
+        ChanderEdit.putBoolean("boolCheck",false);
+        ChanderEdit.apply();
+        ChanderEdit.commit(); 
 
         member_saving_to_sharedprefrences.putString("m1",m1.getText().toString());
         member_saving_to_sharedprefrences.putString("m2",m2.getText().toString());

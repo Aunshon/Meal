@@ -16,8 +16,8 @@ public class SqliteDatabaseHelper extends SQLiteOpenHelper {
     String month_name = month_date.format(cal.getTime());
     int year = cal.get(Calendar.YEAR);
     String TABLE_NAME=month_name+year;
-    public SqliteDatabaseHelper(@Nullable Context context) {
-        super(context, DatabaseName, null, 1);
+    public SqliteDatabaseHelper(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, name, null, version);
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -26,8 +26,7 @@ public class SqliteDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("drop table if exists "+TABLE_NAME);
-        onCreate(db);
+        db.execSQL("create table "+TABLE_NAME+" (m1 double,m2 double,m3 double,m4 double,m5 double,m6 double,m7 double,m8 double,m9 double,m10 double,m1m double,m2m double,m3m double,m4m double,m5m double,m6m double,m7m double,m8m double,m9m double,m10m double,expence double)");
     }
     public boolean AddMeal(String m1,String m2,String m3,String m4,String m5,String m6,String m7,String m8,String m9,String m10,String m1m,String m2m,String m3m,String m4m,String m5m,String m6m,String m7m,String m8m,String m9m,String m10m,String expence){
         SQLiteDatabase sqLiteDatabase=this.getWritableDatabase();
