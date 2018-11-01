@@ -81,7 +81,7 @@ public class MemberAdd extends AppCompatActivity {
 
         ChanderEdit.putBoolean("boolCheck",false);
         ChanderEdit.apply();
-        ChanderEdit.commit(); 
+        ChanderEdit.commit();
 
         member_saving_to_sharedprefrences.putString("m1",m1.getText().toString());
         member_saving_to_sharedprefrences.putString("m2",m2.getText().toString());
