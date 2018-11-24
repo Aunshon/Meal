@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void HistoryMenu(MenuItem item) {
-        Intent intent=new Intent(MainActivity.this,History.class);
+        Intent intent = new Intent(MainActivity.this,History.class);
         startActivity(intent);
     }
 }

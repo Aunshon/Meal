@@ -44,12 +44,13 @@ public class DeleteMonthFragment extends Fragment {
     EditText yeatinputtext;
     SharedPreferences CheckingForNewMonth,memberinput;
     SharedPreferences.Editor editor,member_saving_to_sharedprefrences;
+    int versionint;
 
     @Override
     public void onResume() {
         super.onResume();
 
-        int versionint=VersionShare.getInt("Version",1);
+        versionint=VersionShare.getInt("Version",1);
         Toast.makeText(getContext(), "Version"+versionint, Toast.LENGTH_SHORT).show();
         sqliteDatabaseHelper=new SqliteDatabaseHelper(getContext(),DatabaseName,null,versionint);
 
@@ -79,6 +80,7 @@ public class DeleteMonthFragment extends Fragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 setupDB.rawQuery("drop table if exists "+result,null);
+                                setupDB.rawQuery("create table "+TABLE_NAME+" (m1 double,m2 double,m3 double,m4 double,m5 double,m6 double,m7 double,m8 double,m9 double,m10 double,m1m double,m2m double,m3m double,m4m double,m5m double,m6m double,m7m double,m8m double,m9m double,m10m double,expence double)",null);
                                 CheckingForNewMonth=getContext().getSharedPreferences("CheckingMonth",MODE_PRIVATE);
                                 editor=CheckingForNewMonth.edit();
                                 editor.putBoolean("checkmonth",true);
@@ -99,7 +101,8 @@ public class DeleteMonthFragment extends Fragment {
                     }
                     else{
                         setupDB.rawQuery("drop table if exists "+result,null);
-                        Toast.makeText(getContext(), "Done", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Month Deleted 😍", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), ""+versionint, Toast.LENGTH_SHORT).show();
                     }
                 }
             }

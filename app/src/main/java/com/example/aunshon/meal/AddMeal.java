@@ -28,6 +28,7 @@ public class AddMeal extends AppCompatActivity {
     LinearLayout addMealLayout;
     String TABLE_NAME;
     SqliteDatabaseHelper sqliteDatabaseHelper;
+    AlertDialog.Builder alertdialog,alertdialog1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +94,7 @@ public class AddMeal extends AppCompatActivity {
             }
         }else {
             AlertDialog.Builder alertdialog=new AlertDialog.Builder(AddMeal.this);
-            alertdialog.setTitle("Sorry This month is over !");
+            alertdialog.setTitle("Sorry This month is over 😠");
             alertdialog.setMessage("Close this month by pressing (Close Month) form top Left menu of this page");
             alertdialog.setCancelable(true).setNeutralButton("Close", new DialogInterface.OnClickListener() {
                 @Override
@@ -106,30 +107,50 @@ public class AddMeal extends AppCompatActivity {
     }
 
     public void CloseMonth(MenuItem item) {
-        AlertDialog.Builder alertdialog=new AlertDialog.Builder(AddMeal.this);
-        alertdialog.setTitle("Are You Sure ?");
-        alertdialog.setMessage("Is it a new Month ? Do not create two account in a single month.So make sure previous month is over and it is a new month");
-        alertdialog.setCancelable(true);
-        alertdialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                editor=CheckingForNewMonth.edit();
-                editor.putBoolean("checkmonth",true);
-                editor.apply();
-                editor.commit();
 
-                finish();
-                Intent intent=new Intent(AddMeal.this,MainActivity.class);
-                startActivity(intent);
-            }
-        });
-        alertdialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-        alertdialog.show();
+        String sh=memberinput.getString("TABLE_NAME","TABLE_NAME");
+        String tab=TABLE_NAME;
+        if (sh.equals(tab)){
+            alertdialog1=new AlertDialog.Builder(AddMeal.this);
+            alertdialog1.setTitle("Sorry..😭");
+            alertdialog1.setMessage("Month is not over so you can not close this month OR create new month Right now . When this month will over , automatically system will remind you . THANK YOU");
+            alertdialog1.setCancelable(true);
+            alertdialog1.setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            alertdialog1.show();
+        }
+        else {
+            alertdialog=new AlertDialog.Builder(AddMeal.this);
+            alertdialog.setTitle("Are You Sure ?");
+            alertdialog.setMessage("Press Yes to continue 😁");
+            //alertdialog.setMessage("Is it a new Month ? Do not create two account in a single month.So make sure previous month is over and it is a new month");
+            alertdialog.setCancelable(true);
+            alertdialog.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    editor=CheckingForNewMonth.edit();
+                    editor.putBoolean("checkmonth",true);
+                    editor.apply();
+                    editor.commit();
+
+                    finish();
+                    Intent intent=new Intent(AddMeal.this,MainActivity.class);
+                    startActivity(intent);
+                }
+            });
+            alertdialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.dismiss();
+                }
+            });
+            alertdialog.show();
+        }
+
     }
 
     @Override
