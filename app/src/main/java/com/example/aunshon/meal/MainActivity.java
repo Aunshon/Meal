@@ -118,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void HistoryMenu(MenuItem item) {
-        int versionint=VersionShare.getInt("Version",1);
-        Toast.makeText(this, "Version "+versionint, Toast.LENGTH_SHORT).show();
+        Intent intent=new Intent(MainActivity.this,History.class);
+        startActivity(intent);
     }
 }
